@@ -5,6 +5,20 @@
 
 ### Features
 
+- add opencv-python-headless and torchvision packages with dependencies ([f3e8344](https://github.com///commit/f3e834475e68176dfe4fc85ae0d7deedeec271d4))
+- add opencv-python-headless and torchvision dependencies ([a0d46f8](https://github.com///commit/a0d46f8f36b4e7600dc48e982161432b7f6609b9))
+- add an example image for testing convolutional layer ([1c0d495](https://github.com///commit/1c0d495bda9a7f67364091894833155ab9458e0f))
+- add CV.py for image processing functions with OpenCV and PyTorch ([437049a](https://github.com///commit/437049a780369580c4b0c28bb10b3eb54228336c))
+- add convolution layer example with GUI for image processing ([3f40a0b](https://github.com///commit/3f40a0b3acfb3225d3e4b0ab5c73a7b438553476))
+- add example image path for model configuration ([5c3b95c](https://github.com///commit/5c3b95c2f6fdcfbd49850c9ab43f7cc2e323116b))
+- add 03_pt_04_resnet.py for demonstrating the ResNet50 model using PyTorch ([a6074e1](https://github.com///commit/a6074e13221f1eff5642234060bc15eb4c0e5c30))
+- add 03_pt_03_google_net.py for demonstrating the GoogleNet model using PyTorch ([6ce14ff](https://github.com///commit/6ce14ffa4ade3f9f210ef64b1eeaf5a8595e1145))
+- add 03_pt_02_vgg16.py for demonstrating the VGG16 model using PyTorch ([b88c473](https://github.com///commit/b88c473e60cf0786fd60a92ac92859971823c5d6))
+- add 03_pt_01_alex_net.py for demonstrating the AlexNet model using PyTorch ([1d64db5](https://github.com///commit/1d64db573e6d49661e3bbc4749e65cb6a0891ee7))
+- add 02_pt_02_pooling_layer.py for demonstrating a pooling layer using PyTorch ([11cf85a](https://github.com///commit/11cf85af09706f2ae9eb8be05d08765565050654))
+- add 02_pt_01_conv_layer.py for demonstrating a convolutional layer using PyTorch ([64103df](https://github.com///commit/64103df8c1b0a66d2105006716149b3fcbf5b363))
+- add 01_np_convolve.py for demonstrating NumPy convolution operations ([208f2c6](https://github.com///commit/208f2c6e9ee1797b3c8b9e980ca74b4e22b9b708))
+- add .gitignore to exclude Python-generated files and IDE configurations ([fd311bf](https://github.com///commit/fd311bfe6e483022253a4acdd057e42995ad6c92))
 - add uv file uv.lock ([a3e68e0](https://github.com///commit/a3e68e04a204f42eb7a9f4c069e5b97a2a002e36))
 - implement data loading, preprocessing, and PCA feature importance functions in stats.py ([cfe5a3d](https://github.com///commit/cfe5a3d41cbf4a9be28c0eaddba78bf0c38c4b55))
 - update dependencies and add git-changelog configuration for improved project management ([8cdf3e7](https://github.com///commit/8cdf3e72f53d8dcae7345b366358708955e0d2ed))
@@ -28,6 +42,9 @@
 
 ### Docs
 
+- update README.zh-CN with FashionMNIST dataset details and Git LFS instructions ([bb2d8aa](https://github.com///commit/bb2d8aa1ba2772fbe4fd1fb89ccd9b0cc4d12af2))
+- update README with FashionMNIST dataset details and Git LFS instructions ([3f4315e](https://github.com///commit/3f4315edbfbbe9b94924479d15cc4de75f8481e5))
+- add initial CHANGELOG.md to document project updates and features ([d3dce7d](https://github.com///commit/d3dce7d2cad2870c16707fe4b0555d0ff4edb5ec))
 - update Chinese README to reflect project focus on CNN principles and visualization ([204c279](https://github.com///commit/204c2794536aa852125f9d73a97cf94165573937))
 - add comprehensive README with project introduction, data privacy notice, environment setup, and changelog instructions ([fb90049](https://github.com///commit/fb90049edf59d04ab420b9df368af1c6aac82170))
 
