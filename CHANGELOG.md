@@ -42,6 +42,9 @@
 
 ### Docs
 
+- improve Git LFS instructions in README.zh-CN.md for better clarity and usability ([1c937a9](https://github.com///commit/1c937a95176ee60858237f7a7c9dfb74fd3e807f))
+- enhance Git LFS instructions in README.md for clarity and completeness ([54630a6](https://github.com///commit/54630a69c6520caef5d07a32b76ea7e74556dcbb))
+- update CHANGELOG.md with recent feature additions and documentation updates ([83980ac](https://github.com///commit/83980ac563b9afa7a5ca4a1585c7f9a392e5d5cf))
 - update README.zh-CN with FashionMNIST dataset details and Git LFS instructions ([bb2d8aa](https://github.com///commit/bb2d8aa1ba2772fbe4fd1fb89ccd9b0cc4d12af2))
 - update README with FashionMNIST dataset details and Git LFS instructions ([3f4315e](https://github.com///commit/3f4315edbfbbe9b94924479d15cc4de75f8481e5))
 - add initial CHANGELOG.md to document project updates and features ([d3dce7d](https://github.com///commit/d3dce7d2cad2870c16707fe4b0555d0ff4edb5ec))
