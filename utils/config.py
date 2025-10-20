@@ -11,9 +11,8 @@ from pathlib import Path
 
 # Set base directory
 BASE_DIRECTORY = Path(__file__).resolve().parent.parent
-
 # Data file paths
-
+EXAMPLE_IMG_PATH = BASE_DIRECTORY / "data/Nemo.png"
 # Model save path
 MODEL_SAVE_PATH = BASE_DIRECTORY / "models/model.pth"
 
