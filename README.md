@@ -185,15 +185,42 @@ changelog based on [Conventional Commits](https://www.conventionalcommits.org/).
 This project uses Git Large File Storage (LFS) to manage large files, such as datasets, models, and binary files. The
 instructions as follows are only used to upload the large file to the remote repository.
 
-1. Install Git LFS with the command `brew install git-lfs`.
-2. Initialise Git LFS in the repository with the command `git lfs install`. **ONLY ONCE**.
-3. Track the large files with the command `git lfs track "*.jpg"` (you can replace `*.jpg` with the appropriate file
-   extension).
-4. Add the `.gitattributes` file to version control with the command `git add .gitattributes` or using the UI interface.
-5. Add the `data/` file to version control with the command `git add data/` or using the UI interface.
-6. Commit the changes with the command `git commit -m "Track large files with Git LFS"` or using the UI interface.
-7. Use the command `git lfs ls-files` to list all files being tracked by Git LFS.
-8. Push the changes to the remote repository with the command `git push origin main` or using the UI interface.
+1. Install Git LFS by running the command:
+    ```bash
+    # For MacOS using Homebrew
+    brew install git-lfs
+    # Or, using uv to install Git LFS
+    uv tool install git-lfs
+    ```
+2. Initialise Git LFS in the repository by running the command **ONCE**:
+    ```bash
+    git lfs install
+    ```
+3. Track the large files by using the command:
+    ```bash
+    git lfs track "*.csv"
+    ```
+   You can replace `*.csv` with the appropriate file extension.
+4. Add the `.gitattributes` file to version control using the UI interface or running the command:
+    ```bash
+    git add .gitattributes
+    ```
+5. Add the `data/` file to version control using the UI interface or running the command:
+    ```bash
+    git add data/
+    ```
+6. Commit the changes using the UI interface or running the command:
+    ```bash
+    git commit -m "Track large files with Git LFS"
+    ```
+7. List all files being tracked by the Git LFSUse command:
+    ```bash
+    git lfs ls-files
+    ```
+8. Push the changes to the remote repository using the UI interface or running the command:
+    ```bash
+    git push origin main
+    ```
 9. If you change the name of remote while initialising the repository, you need to change the `origin` to your remote
    name, such as `GitHub` or `xxx`, in the command `git push -u GitHub main` or `git push -u GitHub main`. Besides, if
    you change the branch name, you also need to change the `main` to your branch name, such as `master` or `xxx`, in the
