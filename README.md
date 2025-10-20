@@ -11,10 +11,33 @@ making it easier to visualize the training process, track model performance, and
 
 **DATA DESCRIPTION**
 ---
+[FashionMNIST](https://www.kaggle.com/datasets/zalando-research/fashionmnist) is a modern drop-in replacement for the
+classic MNIST handwritten digits dataset, created by Zalando's research team. It consists of grayscale images of fashion
+products from 10 categories and serves as a standard benchmark in computer vision and machine learning.
 
 **DATA STRUCTURE**
 ---
 
+1. **Raw Data Format**
+
++ Total Samples: 70,000
++ Image Data: 28×28 pixel grayscale images
++ Pixel Value Range: 0-255 (8-bit grayscale)
++ Color Channels: 1 (grayscale)
++ Label Data: Integer class labels from 0-9
+
+2. **Class Labels**
+
+- 0: T-shirt/top
+- 1: Trouser
+- 2: Pullover
+- 3: Dress
+- 4: Coat
+- 5: Sandal
+- 6: Shirt
+- 7: Sneaker
+- 8: Bag
+- 9: Ankle boot
 
 **PRIVACY NOTICE**
 ---
@@ -156,3 +179,47 @@ changelog based on [Conventional Commits](https://www.conventionalcommits.org/).
 - The changelog is automatically generated from your commit messages following the Conventional Commits specification.
 - Run the generation command whenever you want to update the changelog, typically before a release or after significant
   changes.
+
+**LARGE FILE STORAGE (LFS)**
+---
+This project uses Git Large File Storage (LFS) to manage large files, such as datasets, models, and binary files. The
+instructions as follows are only used to upload the large file to the remote repository.
+
+1. Install Git LFS with the command `brew install git-lfs`.
+2. Initialise Git LFS in the repository with the command `git lfs install`. **ONLY ONCE**.
+3. Track the large files with the command `git lfs track "*.jpg"` (you can replace `*.jpg` with the appropriate file
+   extension).
+4. Add the `.gitattributes` file to version control with the command `git add .gitattributes` or using the UI interface.
+5. Add the `data/` file to version control with the command `git add data/` or using the UI interface.
+6. Commit the changes with the command `git commit -m "Track large files with Git LFS"` or using the UI interface.
+7. Use the command `git lfs ls-files` to list all files being tracked by Git LFS.
+8. Push the changes to the remote repository with the command `git push origin main` or using the UI interface.
+9. If you change the name of remote while initialising the repository, you need to change the `origin` to your remote
+   name, such as `GitHub` or `xxx`, in the command `git push -u GitHub main` or `git push -u GitHub main`. Besides, if
+   you change the branch name, you also need to change the `main` to your branch name, such as `master` or `xxx`, in the
+   command `git push -u GitHub master` or `git push -u xxx master`. Therefore, it is better to keep the default names of
+   remote and branch.
+10. If you fail to push the large files, you might have used 2FA authentication. The normal push of the button of the
+    UI interface is invalid. You can try to use a **personal access token (PAT)** instead of accessing the GitHub
+    repository. If you have had the token, run the command `git push origin main` first. Then, enter the `username` and
+    the `token` as the password.
+11. When you push with `username` and `token` successfully first, you can continue to use the button of the UI interface
+    to push the changes.
+12. If you use `username` and `password` to initialise the repository, and you use the `personal access token (PTA)` to
+    push the large files, you might fail to push the future changes with the `push` button of the UI. In this case, you
+    can close the LFS push function by running the following command:
+    ```bash
+    git config lfs.<remote-url>/info/lfs.locksverify
+    ```
+    Then, you can use the `push` button of the UI to push the changes.
+13. You must **install Git LFS locally** before you clone the repository if you plan to get the
+    **full size of the data**. Otherwise, you will only get the pointer files. you can run the following command to
+    install Git LFS:
+    ```bash
+    git lfs uninstall
+    ```
+14. (Optional) If you have already cloned the repository without Git LFS installed, you can run the following command to
+    fetch the actual large files:
+    ```bash
+    git lfs pull
+    ```
