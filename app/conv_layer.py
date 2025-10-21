@@ -10,7 +10,7 @@ from numpy import ndarray, ascontiguousarray, uint8
 from torch import Tensor, nn
 from utils.config import EXAMPLE_IMG_PATH
 from utils.CV import (read_image,
-                      image_to_tensor, tensor_to_image)
+                      image2tensor, tensor2image)
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
@@ -26,7 +26,7 @@ def train() -> tuple[ndarray, ndarray]:
     img = read_image(str(EXAMPLE_IMG_PATH))
 
     # Transform image to tensor
-    t: Tensor = image_to_tensor(img)
+    t: Tensor = image2tensor(img)
     channels, _, _ = t.shape
 
     # Define a convolution layer
@@ -36,7 +36,7 @@ def train() -> tuple[ndarray, ndarray]:
     out = layer(t)
 
     # Show output image
-    out_img = tensor_to_image(out)
+    out_img = tensor2image(out)
 
     return img, out_img
 
