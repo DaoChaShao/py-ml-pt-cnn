@@ -9,10 +9,13 @@
 from numpy import ndarray, random as np_random
 from pandas import DataFrame, Series
 from random import seed as rnd_seed, getstate, setstate
-from torch import (cuda, backends, device, Tensor, tensor, float32,
+from torch import (cuda, backends, Tensor, tensor, float32, int64, long,
                    manual_seed, get_rng_state, set_rng_state)
+
 from torch.utils.data import Dataset, DataLoader
-from typing import Union
+from typing import Union, Any
+
+from utils.decorator import timer
 
 
 class TorchRandomSeed:
@@ -69,7 +72,6 @@ class TorchRandomSeed:
 
 def check_device() -> None:
     """ Check Available Device (CPU, GPU, MPS)
-    :param option: filter option for device type
     :return: dictionary of available devices
     """
 
@@ -154,58 +156,122 @@ def get_device(accelerator: str = "auto", cuda_mode: int = 0) -> str:
             return "cpu"
 
 
-def arr2tensor(data: ndarray, target_device: str, is_grad: bool = False) -> Tensor:
+@timer
+def arr2tensor(data: ndarray, accelerator: str, is_grad: bool = False) -> Tensor:
     """ Convert a NumPy array to a PyTorch tensor
     :param data: the NumPy array to be converted
-    :param target_device: the device to place the tensor on
+    :param accelerator: the device to place the tensor on
     :param is_grad: whether the tensor requires gradient computation
     :return: the converted PyTorch tensor
     """
-    return tensor(data, dtype=float32, device=target_device, requires_grad=is_grad)
+    return tensor(data, dtype=float32, device=accelerator, requires_grad=is_grad)
 
 
-def df2tensor(data: DataFrame, target_device: str, is_grad: bool = False) -> Tensor:
+@timer
+def df2tensor(data: DataFrame, is_label: bool = False, accelerator: str = "cpu", is_grad: bool = False) -> Tensor:
     """ Convert a Pandas DataFrame to a PyTorch tensor
     :param data: the DataFrame to be converted
-    :param target_device: the device to place the tensor on
+    :param is_label: whether the DataFrame requires label
+    :param accelerator: the device to place the tensor on
     :param is_grad: whether the tensor requires gradient computation
     :return: the converted PyTorch tensor
     """
-    return tensor(data.values, dtype=float32, device=target_device, requires_grad=is_grad)
+    if is_label:
+        t: Tensor = tensor(data.values, dtype=int64, device=accelerator, requires_grad=is_grad)
+    else:
+        t: Tensor = tensor(data.values, dtype=float32, device=accelerator, requires_grad=is_grad)
+
+    print(f"The tensor shape is {t.shape}, and its dtype is {t.dtype}.")
+
+    return t
+
+
+class GrayTensorReshaper:
+
+    def __init__(self, flat: Tensor):
+        self._height: int = 28
+        self._width: int = 28
+        self._channels: int = 1
+        self._image: Tensor = flat.reshape(-1, self._channels, self._height, self._width)
+
+    @property
+    def height(self) -> int:
+        return self._height
+
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def channels(self) -> int:
+        return self._channels
+
+    @property
+    def shape(self) -> tuple:
+        return self._image.shape
+
+    def __call__(self) -> Tensor:
+        return self._image
+
+    def __getitem__(self, index: int) -> Tensor:
+        return self._image[index]
+
+    def __len__(self) -> int:
+        return len(self._image)
+
+    def __repr__(self) -> str:
+        return f"GrayTensorReshape({self._image.shape})"
 
 
 class TorchDataset(Dataset):
     """ A custom PyTorch Dataset class for handling features and labels """
 
-    def __init__(self, features: Union[DataFrame, ndarray], labels: Union[DataFrame, ndarray], target_device=None):
+    def __init__(self, features: Any, labels: Any):
         """ Initialise the TorchDataset class
         :param features: the feature tensor
         :param labels: the label tensor
         """
-        self._features: Tensor = self._to_tensor(features, target_device)
-        self._labels: Tensor = self._to_tensor(labels, target_device)
+        self._features: Tensor = self._to_tensor(features)
+        self._labels: Tensor = self._to_tensor(labels, is_label=True)
+
+    @property
+    def features(self) -> Tensor:
+        return self._features
+
+    @property
+    def labels(self) -> Tensor:
+        return self._labels
 
     @staticmethod
-    def _to_tensor(data: Union[DataFrame, Tensor, ndarray, list], target_device=None) -> Tensor:
+    def _to_tensor(data: Union[DataFrame, Tensor, ndarray, list], is_label: bool = False) -> Tensor:
         """ Convert input data to a PyTorch tensor on the specified device
         :param data: the input data (DataFrame, ndarray, list, or Tensor)
-        :param target_device: the target device to place the tensor on
         :return: the converted PyTorch tensor
         """
         if isinstance(data, (DataFrame, Series)):
-            out = tensor(data.values, dtype=float32)
+            if is_label:
+                out = tensor(data.values, dtype=int64)
+            else:
+                out = tensor(data.values, dtype=float32)
         elif isinstance(data, Tensor):
-            out = data.float()
+            if is_label:
+                out = data.long()
+            else:
+                out = data.float()
         elif isinstance(data, (ndarray, list)):
-            out = tensor(data, dtype=float32)
+            if is_label:
+                out = tensor(data, dtype=int64)
+            else:
+                out = tensor(data, dtype=float32)
+        elif isinstance(data, GrayTensorReshaper):
+            if is_label:
+                out = data().long()
+            else:
+                out = data().float()
         else:
             raise TypeError(f"Unsupported data type: {type(data)}")
 
-        if target_device is None:
-            target = device("cuda") if cuda.is_available() else device("cpu")
-        else:
-            target = target_device
-        return out.to(target)
+        return out
 
     def __len__(self) -> int:
         return len(self._features)
@@ -221,31 +287,8 @@ class TorchDataset(Dataset):
         else:
             raise TypeError(f"Invalid index type: {type(index)}")
 
-    @property
-    def features(self) -> Tensor:
-        return self._features
-
-    @property
-    def labels(self) -> Tensor:
-        return self._labels
-
     def __repr__(self):
-        dev = self._features.device
-        return f"TorchDataset(features={self._features.shape}, labels={self._labels.shape}, device={dev})"
-
-    def to(self, target_device: Union[str, device]) -> "TorchDataset":
-        """ Move the dataset to the specified device
-        :param target_device: the target device to move the dataset to
-        :return: the dataset on the target device
-        """
-        if isinstance(target_device, str):
-            target = device(target_device)
-        else:
-            target = target_device
-        self._features = self._features.to(target)
-        self._labels = self._labels.to(target)
-        # Return self for chaining
-        return self
+        return f"TorchDataset(features={self._features.shape}, labels={self._labels.shape}, device=cpu)"
 
 
 class TorchDataLoader:
