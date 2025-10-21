@@ -10,7 +10,7 @@ from torch import Tensor, nn
 
 from utils.config import EXAMPLE_IMG_PATH
 from utils.CV import (read_image, display_image,
-                      image_to_tensor, tensor_to_image)
+                      image2tensor, tensor2image)
 from utils.helper import Timer
 
 
@@ -24,7 +24,7 @@ def main() -> None:
         # display_image(img)
 
         # Transform image to tensor
-        t: Tensor = image_to_tensor(img)
+        t: Tensor = image2tensor(img)
         channels, height, width = t.shape
 
         # Define a convolution layer
@@ -42,7 +42,7 @@ def main() -> None:
         out = pooling_layer(out)
 
         # Show output image
-        out_img = tensor_to_image(out)
+        out_img = tensor2image(out)
         display_image(out_img)
 
 
