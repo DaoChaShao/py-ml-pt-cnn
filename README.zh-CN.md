@@ -199,9 +199,10 @@ Zalando 的研究团队创建。它包含了 10 个类别的时尚单品灰度�
    或图形界面将`.gitattributes`文件添加到版本控制中。
 5. 使用命令
     ```bash
-    git add creditcard.csv
+    git add fashion-mnist_train.csv
+    git add fashion-mnist_test.csv
     ```
-   或图形界面将`creditcard.csv`文件添加到版本控制中。
+   或图形界面将`fashion-mnist_train.csv`和`fashion-mnist_test.csv`文件添加到版本控制中。
 6. 使用命令
     ```bash
     git commit -m "Track large files with Git LFS"
