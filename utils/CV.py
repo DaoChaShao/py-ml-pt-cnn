@@ -37,7 +37,7 @@ def display_image(image) -> None:
 
 
 @timer
-def image_to_tensor(image) -> Tensor:
+def image2tensor(image) -> Tensor:
     """ Reshape the image to the specified width and height """
     img = cvtColor(image, COLOR_BGR2RGB)
 
@@ -51,7 +51,7 @@ def image_to_tensor(image) -> Tensor:
 
 
 @timer
-def tensor_to_image(image: Tensor) -> ndarray:
+def tensor2image(image: Tensor) -> ndarray:
     """ Reshape the tensor back to image format """
     img = image - image.min()
     img = img / img.max() * 255
