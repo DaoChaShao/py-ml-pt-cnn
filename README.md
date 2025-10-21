@@ -189,8 +189,6 @@ instructions as follows are only used to upload the large file to the remote rep
     ```bash
     # For MacOS using Homebrew
     brew install git-lfs
-    # Or, using uv to install Git LFS
-    uv tool install git-lfs
     ```
 2. Initialise Git LFS in the repository by running the command **ONCE**:
     ```bash
