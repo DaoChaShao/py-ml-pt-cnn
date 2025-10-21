@@ -1,10 +1,17 @@
 <!-- insertion marker -->
 <a name="0.1.0"></a>
 
-## [0.1.0](https://github.com///compare/8f3a7d2798b3cbb17bd908be6d0f438bb64e45d7...0.1.0) (2025-10-20)
+## [0.1.0](https://github.com///compare/8f3a7d2798b3cbb17bd908be6d0f438bb64e45d7...0.1.0) (2025-10-21)
 
 ### Features
 
+- save the best conv model ([6a9bb95](https://github.com///commit/6a9bb956a86a6c10b347432803f3479036de357d))
+- add TorchTrainer class for managing model training and validation ([1e2f5e1](https://github.com///commit/1e2f5e11c191c46a0b1b94f139d83ff5c35a3fdb))
+- enhance tensor conversion functions and add GrayTensorReshaper class ([6d08738](https://github.com///commit/6d08738288ff874fb2f6243a0fb0cfbbf2862644))
+- add predictor script for Fashion MNIST model inference ([132797b](https://github.com///commit/132797b80cfd5326977c0c446696fa2e4c7ded01))
+- add ConvolutionalModel class for image classification ([99f1783](https://github.com///commit/99f1783d3cbbbee96cf68fa7ff1b7fff41b2a1f3))
+- implement data preparation function and integrate it into main workflow ([5106894](https://github.com///commit/51068948c961a9cae414d6445eacd4bba64ebc34))
+- add dataset paths and fashion class mapping to config.py ([6a374e9](https://github.com///commit/6a374e98adbe8f199669199035c48166d02e1d32))
 - add opencv-python-headless and torchvision packages with dependencies ([f3e8344](https://github.com///commit/f3e834475e68176dfe4fc85ae0d7deedeec271d4))
 - add opencv-python-headless and torchvision dependencies ([a0d46f8](https://github.com///commit/a0d46f8f36b4e7600dc48e982161432b7f6609b9))
 - add an example image for testing convolutional layer ([1c0d495](https://github.com///commit/1c0d495bda9a7f67364091894833155ab9458e0f))
@@ -42,6 +49,7 @@
 
 ### Docs
 
+- update CHANGELOG.md with recent documentation improvements and feature additions ([d908f38](https://github.com///commit/d908f388d30ac3045b0362ecffca5a58abdba574))
 - improve Git LFS instructions in README.zh-CN.md for better clarity and usability ([1c937a9](https://github.com///commit/1c937a95176ee60858237f7a7c9dfb74fd3e807f))
 - enhance Git LFS instructions in README.md for clarity and completeness ([54630a6](https://github.com///commit/54630a69c6520caef5d07a32b76ea7e74556dcbb))
 - update CHANGELOG.md with recent feature additions and documentation updates ([83980ac](https://github.com///commit/83980ac563b9afa7a5ca4a1585c7f9a392e5d5cf))
@@ -50,4 +58,9 @@
 - add initial CHANGELOG.md to document project updates and features ([d3dce7d](https://github.com///commit/d3dce7d2cad2870c16707fe4b0555d0ff4edb5ec))
 - update Chinese README to reflect project focus on CNN principles and visualization ([204c279](https://github.com///commit/204c2794536aa852125f9d73a97cf94165573937))
 - add comprehensive README with project introduction, data privacy notice, environment setup, and changelog instructions ([fb90049](https://github.com///commit/fb90049edf59d04ab420b9df368af1c6aac82170))
+
+### Code Refactoring
+
+- consolidate data loading functions and improve variable assignment ([1b24c9c](https://github.com///commit/1b24c9c708a5e86b33b80faca89db04b95054b33))
+- rename image_to_tensor and tensor_to_image functions for consistency ([b32530c](https://github.com///commit/b32530c2193c19ea2b4df2e118e31aebce4a7628))
 
