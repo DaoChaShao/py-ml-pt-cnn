@@ -49,9 +49,11 @@
 
 ### Docs
 
+- remove uv tool installation instructions for Git LFS from README.zh-CN.md ([48c9c2a](https://github.com///commit/48c9c2aef0a2914c6b503101643deaf24b42b638))
+- remove uv tool installation instructions for Git LFS from README.md ([248fc23](https://github.com///commit/248fc238a769f6a0840f235ab989988d04090606))
+- update CHANGELOG.md with recent documentation improvements and feature additions ([0d59dda](https://github.com///commit/0d59dda9ad421f40c110ca4653060911c20758bb))
 - update README.zh-CN.md to specify adding fashion-mnist dataset files to version control ([6edde25](https://github.com///commit/6edde25052c2e84946a4ef8c41965369101f2d49))
 - update README.md to specify adding fashion-mnist dataset files to version control ([31f0f1c](https://github.com///commit/31f0f1cf0a4e9125617bd37ce14d3d7c9e7c5ab3))
-- update CHANGELOG.md with recent documentation improvements and feature additions ([b391eac](https://github.com///commit/b391eacbc24475be5a96f79df75b8f6960dab133))
 - improve Git LFS instructions in README.zh-CN.md for better clarity and usability ([1c937a9](https://github.com///commit/1c937a95176ee60858237f7a7c9dfb74fd3e807f))
 - enhance Git LFS instructions in README.md for clarity and completeness ([54630a6](https://github.com///commit/54630a69c6520caef5d07a32b76ea7e74556dcbb))
 - update CHANGELOG.md with recent feature additions and documentation updates ([83980ac](https://github.com///commit/83980ac563b9afa7a5ca4a1585c7f9a392e5d5cf))
