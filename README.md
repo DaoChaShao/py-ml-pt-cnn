@@ -205,9 +205,11 @@ instructions as follows are only used to upload the large file to the remote rep
     ```bash
     git add .gitattributes
     ```
-5. Add the `data/` file to version control using the UI interface or running the command:
+5. Add the `fashion-mnist_train.csv` and `fashion-mnist_test.csv` file to version control using the UI interface or
+   running the command:
     ```bash
-    git add data/
+    git add fashion-mnist_train.csv
+    git add fashion-mnist_test.csv
     ```
 6. Commit the changes using the UI interface or running the command:
     ```bash
